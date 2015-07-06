@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Custom File Input</title>
+	
+	<style type="text/css">
+	body {
+		margin: 10px;
+	}
+	.file-input {
+	    position: relative;
+	    overflow: hidden;
+	    border: 1px solid #1f7c57;
+	    border-radius: 3px;
+	    background: linear-gradient(#43c692, #39b885);
+	    color: white;
+	    padding: 5px 10px;
+	    display: inline-block;
+	    font-family: 'Trebuchet MS';
+	    font-weight: bold;
+	}
+	.file-input input[type="file"] {
+	    position: absolute;
+	    top: 0;
+	    right: 0;
+	    min-width: 100%;
+	    min-height: 100%;
+	    text-align: right;
+	    filter: alpha(opacity=0);
+	    opacity: 0;
+	    outline: none;
+	    display: block;
+	    cursor: pointer;
+	}
+	.filename {
+		font-family: 'Trebuchet MS';
+		padding: 5px 10px;
+	    display: inline-block;
+	    vertical-align: top;
+	    font-style: italic;
+	}
+</style>
+	
+	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready( function() {
+		$('.file-input input[type="file"]').change( function() {
+			var filename = $(this).val().replace(/\\/g, '/').replace(/.*\//, '');
+			$('.filename').html( filename );
+		});
+	});
+	</script>
+</head>
+<body>
+<form enctype="multipart/form-data">
+	<span class="file-input">
+		Browse<input type="file" />
+	</span>
+	<span class="filename"></span>
+</form>
+</body>
+</html>
